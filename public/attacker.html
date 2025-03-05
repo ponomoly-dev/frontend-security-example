@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      function load() {
+        // 사용자 정보 가져오기
+        const userInfo = frm.document.querySelector("#user_info");
+        // 사용자 정보 문자열을 로그로 출력
+        console.log(userInfo.textContent);
+      }
+    </script>
+  </head>
+  <body>
+    <div></div>
+    <!-- 사용자 정보를 iframe으로 삽입 -->
+    <iframe
+      name="frm"
+      onload="load()"
+      src="http://localhost:3000/sameorigin01.html"
+      width="80%"
+    />
+  </body>
+</html>

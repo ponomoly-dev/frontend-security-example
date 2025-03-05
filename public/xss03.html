@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>프론트엔드 개발자를 위한 보안 - XSS 03</title>
+    <script src="./purify.js"></script>
+  </head>
+  <body>
+    <h1>XSS 검사용 페이지</h1>
+    <div id="result"></div>
+    <a id="link" href="#">링크 클릭</a>
+    <script>
+      /** XSS 테스트 예제 - DOMPurify */
+      /** http://localhost:3000/xss03.html?message=<img src onerror="alert('xss')" /> */
+      const url = new URL(location.href);
+      const message = url.searchParams.get("message");
+      if (message !== null) {
+        const sanitizedMessage = DOMPurify.sanitize(message);
+        document.querySelector("#result").innerHTML = sanitizedMessage;
+      }
+    </script>
+  </body>
+</html>

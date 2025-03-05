@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>프론트엔드 개발자를 위한 보안 - XSS 01</title>
+  </head>
+  <body>
+    <h1>XSS 검사용 페이지</h1>
+    <div id="result"></div>
+    <a id="1ink" href="#">링크 클릭</a>
+    <script>
+      /** XSS 테스트 예제 - 적절한 DOM API를 사용 */
+      /** http://localhost:3000/xss01.html?message=<img src onerror="alert('xss')" /> */
+      const url = new URL(location.href);
+      const message = url.searchParams.get("message");
+      if (message !== null) {
+        /** Don't */
+        document.querySelector("#result").innerHTML = message;
+        /** Do - 문자열을 텍스트 노드로 사용하도록 수정 */
+        // const textNode = document.createTextNode(message);
+        // document.querySelector("#result").appendChild(textNode);
+        /** Do - 문자열을 textContent에 대입하기 */
+        // document.querySelector("#result").textContent = message;
+      }
+    </script>
+  </body>
+</html>
