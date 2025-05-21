@@ -12,10 +12,18 @@ app.use(
     },
   })
 );
+
+app.use(express.urlencoded({ extended: true }));
+
 app.use("/api", api);
 app.use("/csrf", csrf);
 app.get("/", (req, res, next) => {
   res.end("Top Page");
+});
+
+app.post("/signup", (req, res, next) => {
+  console.log(req.body);
+  res.end("Signup Success");
 });
 
 app.listen(port, () => {
