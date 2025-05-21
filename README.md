@@ -40,3 +40,17 @@
 
 - 이 프로젝트는 학습 목적으로 제공되며, 실제 서비스에 적용하기 전에 충분한 테스트가 필요합니다.
 - 보안 설정은 프로젝트의 요구사항에 맞게 조정해야 합니다.
+- 다른 호스트명 테스트를 위해 macos 기준 `/private/etc/hosts`를 수정해야 한다.
+
+```
+##
+# Host Database
+#
+# localhost is used to configure the loopback interface
+# when the system is booting.  Do not change this entry.
+##
+127.0.0.1       localhost
+255.255.255.255 broadcasthost
+::1             localhost
+127.0.0.1 site.example
+```

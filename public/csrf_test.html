@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form action="/csrf/remit" method="post">
+      <div>
+        <label for="to">수취인</label>
+        <input type="text" name="to" id="to" required />
+      </div>
+      <div>
+        <label for="amount">금액</label>
+        <input type="text" name="amount" id="amount" required />
+      </div>
+      <div>
+        <button type="submit">송금</button>
+      </div>
+    </form>
+    <!-- Double Cookie -->
+    <script>
+      const token = document.cookie
+        .split("; ")
+        .find((row) => row.startsWith("csrf_token="))
+        .split("=")[1];
+      const el = document.createElement("input");
+      el.type = "hidden";
+      el.name = "csrf_token";
+      el.value = token;
+      document.querySelector("remit").appendChild(el);
+    </script>
+    <!-- Double Cookie End -->
+  </body>
+</html>

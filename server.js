@@ -1,12 +1,19 @@
 const express = require("express");
 const api = require("./route/api");
+const csrf = require("./route/csrf");
 const app = express();
 const port = 3000;
 
-app.use(express.static("public"));
-
+// prevent clickjacking -
+app.use(
+  express.static("public", {
+    setHeaders: (res, path, stat) => {
+      res.header("X-Frame-Options", "SAMEORIGIN");
+    },
+  })
+);
 app.use("/api", api);
-
+app.use("/csrf", csrf);
 app.get("/", (req, res, next) => {
   res.end("Top Page");
 });

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>오픈 리다이렉트 확인 페이지</h1>
+    <script>
+      // default
+      const url = new URL(location.href);
+      const redirectUrl = url.searchParams.get("url");
+      //   location.href = redirectUrl;
+      if (redirectUrl) {
+        // 이동 시 동일 출처 확인 + 사용자 확인
+        const redirectUrlObj = new URL(redirectUrl, location.href);
+        if (
+          redirectUrlObj.origin === location.origin ||
+          confirm(`${redirectUrl}로 이동하시겠습니까?`)
+        ) {
+          location.href = redirectUrl;
+        } else {
+          alert("동일 출처 확인 후 이동해주세요.");
+        }
+      }
+    </script>
+  </body>
+</html>
